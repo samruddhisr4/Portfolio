@@ -1,0 +1,290 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: #121212;
+        --foreground: #f3f4f6;
+        --card: #111827;
+        --card-foreground: #f3f4f6;
+        --border: #374151;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 999px;
+}
+
+/* ── Glass ── */
+.glass {
+    background: rgba(17, 24, 39, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* ── Gradients ── */
+.text-gradient {
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient-premium {
+    background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 50%, #1e1b4b 100%);
+}
+
+/* ────────────────────────────────────────────
+   KEYFRAME ANIMATIONS
+──────────────────────────────────────────── */
+
+/* Floating / levitate */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+.animate-float {
+    animation: float 5s ease-in-out infinite;
+}
+
+/* Slow spin */
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin-slow {
+    animation: spin-slow 12s linear infinite;
+}
+
+/* Reverse slow spin */
+@keyframes spin-slow-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+.animate-spin-slow-reverse {
+    animation: spin-slow-reverse 18s linear infinite;
+}
+
+/* Pulse glow */
+@keyframes glow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 60px rgba(59, 130, 246, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(59, 130, 246, 0.6), 0 0 100px rgba(99, 102, 241, 0.3);
+    }
+}
+
+.animate-glow-pulse {
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Shimmer sweep */
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.shimmer-text {
+    background: linear-gradient(90deg, #60a5fa 0%, #a78bfa 25%, #ffffff 50%, #a78bfa 75%, #60a5fa 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+}
+
+/* Typewriter cursor blink */
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.animate-blink {
+    animation: blink 1s step-end infinite;
+}
+
+/* Particle drift */
+@keyframes drift {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.6;
+    }
+
+    33% {
+        transform: translateY(-40px) translateX(20px) scale(1.1);
+        opacity: 0.8;
+    }
+
+    66% {
+        transform: translateY(-20px) translateX(-15px) scale(0.9);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.6;
+    }
+}
+
+/* Orb pulse */
+@keyframes orb-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 0.15;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.3;
+    }
+}
+
+/* Timeline line grow */
+@keyframes line-grow {
+    from {
+        transform: scaleY(0);
+        transform-origin: top;
+    }
+
+    to {
+        transform: scaleY(1);
+        transform-origin: top;
+    }
+}
+
+.animate-line-grow {
+    animation: line-grow 1.5s ease-out forwards;
+}
+
+/* Shimmer card overlay */
+@keyframes card-shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+.card-shimmer-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-shimmer-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.04), transparent);
+    transform: skewX(-15deg);
+    pointer-events: none;
+}
+
+.card-shimmer-wrap:hover::after {
+    animation: card-shimmer 0.7s ease forwards;
+}
+
+/* Bounce-in for badges/tags */
+@keyframes bounce-in {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Number count-up shimmer */
+@keyframes counter-glow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 10px rgba(96, 165, 250, 0.4);
+    }
+
+    50% {
+        text-shadow: 0 0 30px rgba(96, 165, 250, 0.9), 0 0 60px rgba(167, 139, 250, 0.4);
+    }
+}
+
+.animate-counter-glow {
+    animation: counter-glow 2s ease-in-out infinite;
+}
