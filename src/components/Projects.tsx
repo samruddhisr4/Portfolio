@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { Github } from "lucide-react";
 import { useRef } from "react";
 
 interface Project {
@@ -56,7 +56,6 @@ const projects = [
         description: "Deep learning project leveraging transfer learning with VGG16 to classify mango varieties from images. Designed for deployment in agriculture, fruit markets, and processing facilities for automated, accurate mango sorting.",
         tags: ["Python", "TensorFlow", "Keras", "VGG16", "Transfer Learning"],
         image: "/mangonet.png",
-        link: "https://github.com/samruddhisr4/MangoNet",
         github: "https://github.com/samruddhisr4/MangoNet",
     },
     {
@@ -114,10 +113,10 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                     {/* Gradient overlay always */}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent" />
 
-                    {/* Hover action buttons */}
+                    {/* Hover: GitHub only */}
                     <motion.div
                         initial={false}
-                        className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
                         <motion.a
                             href={project.github}
@@ -125,19 +124,9 @@ function ProjectCard({ project, index }: ProjectCardProps) {
                             rel="noopener noreferrer"
                             whileHover={{ scale: 1.15, rotate: -5 }}
                             whileTap={{ scale: 0.9 }}
-                            className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-blue-500/80 transition-colors border border-white/20"
+                            className="p-4 bg-white/10 backdrop-blur-md rounded-full hover:bg-blue-500/80 transition-colors border border-white/20"
                         >
-                            <Github className="w-5 h-5 text-white" />
-                        </motion.a>
-                        <motion.a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.15, rotate: 5 }}
-                            whileTap={{ scale: 0.9 }}
-                            className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-blue-500/80 transition-colors border border-white/20"
-                        >
-                            <ExternalLink className="w-5 h-5 text-white" />
+                            <Github className="w-6 h-6 text-white" />
                         </motion.a>
                     </motion.div>
                 </div>

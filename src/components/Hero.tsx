@@ -94,7 +94,7 @@ const particles = Array.from({ length: 20 }, (_, i) => ({
 
 const Hero = () => {
     return (
-        <section id="about" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#121212] pt-20">
+        <section id="about" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#121212] pt-14">
             {/* ── Background orbs ── */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div
@@ -123,9 +123,9 @@ const Hero = () => {
                 ))}
             </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-20 text-center md:text-left flex flex-col md:flex-row items-center gap-8">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 text-center md:text-left flex flex-col md:flex-row items-center gap-6">
                 {/* ── Left text column ── */}
-                <div className="flex-1 space-y-5">
+                <div className="flex-1 space-y-4">
                     {/* Badge */}
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
@@ -203,7 +203,7 @@ const Hero = () => {
                         {[
                             { value: "6+", label: "Projects" },
                             { value: "4+", label: "Certifications" },
-                            { value: "3+", label: "Internships" },
+
                         ].map(({ value, label }) => (
                             <div key={label} className="text-center md:text-left">
                                 <p className="text-2xl font-black text-blue-400 animate-counter-glow">{value}</p>
@@ -234,18 +234,36 @@ const Hero = () => {
                             />
                             {/* Profile card */}
                             <div
-                                className="animate-float relative aspect-square w-[300px] mx-auto rounded-3xl overflow-hidden border border-white/10 glass"
+                                className="animate-float relative aspect-square w-[360px] mx-auto rounded-3xl overflow-hidden border border-blue-500/20 glass"
                                 style={{ transformStyle: "preserve-3d" }}
                             >
                                 <Image
                                     src="/profile.png"
                                     alt="Samruddhi Ramdhave"
                                     fill
-                                    className="object-cover"
+                                    className="object-cover object-top"
                                     priority
                                 />
-                                {/* Overlay gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#121212]/60 via-transparent to-transparent" />
+                                {/* Bottom fade — blends light bg into dark card */}
+                                <div className="absolute inset-0" style={{
+                                    background: "linear-gradient(to top, #121212 0%, rgba(18,18,18,0.7) 30%, transparent 65%)"
+                                }} />
+                                {/* Top fade */}
+                                <div className="absolute inset-0" style={{
+                                    background: "linear-gradient(to bottom, rgba(18,18,18,0.5) 0%, transparent 30%)"
+                                }} />
+                                {/* Left fade */}
+                                <div className="absolute inset-0" style={{
+                                    background: "linear-gradient(to right, rgba(18,18,18,0.5) 0%, transparent 25%)"
+                                }} />
+                                {/* Right fade */}
+                                <div className="absolute inset-0" style={{
+                                    background: "linear-gradient(to left, rgba(18,18,18,0.5) 0%, transparent 25%)"
+                                }} />
+                                {/* Blue tint overlay for cohesion with dark theme */}
+                                <div className="absolute inset-0 mix-blend-color opacity-10" style={{
+                                    background: "linear-gradient(135deg, #1e3a8a, #4c1d95)"
+                                }} />
                             </div>
                         </div>
                     </MagneticCard>

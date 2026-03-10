@@ -21,9 +21,9 @@ export default function Home() {
             {/* Rest of the content */}
             <div className="relative z-20 bg-[#121212]">
                 <Skills />
-                <Certificates />
-                <Projects />
                 <Experience />
+                <Projects />
+                <Certificates />
                 <Contact />
                 <Footer />
             </div>
