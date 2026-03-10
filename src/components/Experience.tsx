@@ -5,6 +5,38 @@ import { motion, useInView } from "framer-motion";
 import { Calendar, Briefcase } from "lucide-react";
 import { useRef } from "react";
 
+// ── Floating particle (same as Hero) ─────────────────────────────────────
+const Particle = ({ x, y, size, delay, duration }: { x: number; y: number; size: number; delay: number; duration: number }) => (
+    <div
+        className="absolute rounded-full bg-blue-400/30 pointer-events-none"
+        style={{
+            left: `${x}%`,
+            top: `${y}%`,
+            width: size,
+            height: size,
+            animation: `drift ${duration}s ease-in-out ${delay}s infinite`,
+        }}
+    />
+);
+
+const particles = [
+    { id: 0, x: 8, y: 15, size: 5, delay: 0, duration: 8 },
+    { id: 1, x: 22, y: 72, size: 3, delay: 1.2, duration: 7 },
+    { id: 2, x: 37, y: 35, size: 6, delay: 0.5, duration: 9 },
+    { id: 3, x: 55, y: 60, size: 4, delay: 2, duration: 6 },
+    { id: 4, x: 70, y: 20, size: 5, delay: 0.8, duration: 10 },
+    { id: 5, x: 82, y: 80, size: 3, delay: 1.5, duration: 8 },
+    { id: 6, x: 92, y: 45, size: 4, delay: 3, duration: 7 },
+    { id: 7, x: 15, y: 50, size: 3, delay: 2.5, duration: 9 },
+    { id: 8, x: 48, y: 88, size: 5, delay: 0.3, duration: 11 },
+    { id: 9, x: 63, y: 10, size: 4, delay: 1.8, duration: 8 },
+    { id: 10, x: 30, y: 92, size: 3, delay: 0.7, duration: 7 },
+    { id: 11, x: 78, y: 55, size: 6, delay: 2.2, duration: 9 },
+    { id: 12, x: 5, y: 80, size: 4, delay: 1, duration: 10 },
+    { id: 13, x: 90, y: 25, size: 3, delay: 3.5, duration: 8 },
+    { id: 14, x: 44, y: 5, size: 5, delay: 0.2, duration: 7 },
+];
+
 interface ExperienceItemProps {
     role: string;
     company: string;
@@ -119,6 +151,13 @@ const Experience = () => {
 
     return (
         <section id="experience" className="py-24 relative bg-[#121212] overflow-hidden">
+            {/* ── Floating particles ── */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                {particles.map((p) => (
+                    <Particle key={p.id} {...p} />
+                ))}
+            </div>
+
             {/* Ambient glow */}
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] opacity-5 pointer-events-none rounded-full"
                 style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 70%)" }} />
